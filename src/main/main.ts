@@ -4,8 +4,13 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import { getGames } from './utils/folder-checker';
+import initializeConstants from './utils/initialize-contants';
+import libraryGenerator from './ipcs/library-generator';
 
 const ipc = require('electron').ipcMain;
+
+const global = initializeConstants();
 
 let mainWindow: Electron.BrowserWindow | null;
 
@@ -48,6 +53,12 @@ function createWindow(): void {
             shell.openItem(`D:/Lily/Emulators/PS3/games/Folklore/start.bat`);
         }
     })
+
+    ipc.on('get-games', (e: Electron.IpcMessageEvent, args: string[]) => {
+        e.sender.send('get-games', { games: getGames() });
+    })
+
+    libraryGenerator(ipc, global);
 }
 
 // This method will be called when Electron has finished

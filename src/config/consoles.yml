@@ -1,0 +1,14 @@
+PS3: !!map
+    name : Playstation Station 3
+    Manufacturer : Sony
+    Description: The PlayStation 3, (officially abbreviated as PS3) is the third home video game console produced by Sony Computer Entertainment and the successor to the PlayStation 2 as part of the PlayStation series. The PlayStation 3 competes with Microsoft's Xbox 360 and Nintendo's Wii as part of the seventh generation of video game consoles. It was first released on November 11, 2006, in Japan, with international markets following shortly thereafter.
+
+Xbox 360: !!map
+    name : Microsoft Xbox 360
+    Manufacturer : Microsoft
+    Description: The Xbox 360 is the second video game console produced by Microsoft and the successor to the Xbox. The Xbox 360 competes with Sony's PlayStation 3 and Nintendo's Wii as part of the seventh generation of video game consoles. As of September 30, 2011, 57.6 million Xbox 360 consoles have been sold worldwide. Several major features of the Xbox 360 are its integrated Xbox Live service that allows players to compete online, download arcade games, game demos, trailers, TV shows, music and movies and its Windows Media Center multimedia capabilities. The Xbox 360 also offers region specific access to third-party media streaming services such as Netflix and ESPN in the US or Sky Go in the UK.
+
+Gameboy Advance: !!map
+    name : Nintendo Game Boy Advance
+    Manufacturer : Nintendo
+    Description: The Game Boy Advance, (often shortened to GBA) is a 32-bit handheld video game console developed, manufactured, and marketed by Nintendo. It is the successor to the Game Boy Color. It was released in Japan on March 21, 2001; in North America on June 11, 2001; in Australia and Europe on June 22, 2001; and in the People's Republic of China on June 8, 2004 (excluding Hong Kong).

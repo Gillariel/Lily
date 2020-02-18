@@ -21,6 +21,7 @@ const commonConfig = {
       '@': srcPaths('src'),
       '@main': srcPaths('src/main'),
       '@models': srcPaths('src/models'),
+      '@types': srcPaths('src/types'),
       '@public': srcPaths('public'),
       '@renderer': srcPaths('src/renderer'),
       '@utils': srcPaths('src/utils'),

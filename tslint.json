@@ -23,6 +23,7 @@
         "@",
         "@public",
         "@main",
+        "@types",
         "@models",
         "@renderer",
         "@utils"

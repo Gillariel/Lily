@@ -1,0 +1,54 @@
+PS3: !!seq
+    - Folklore: !!map
+        Name: Folklore
+        Platform: Sony Playstation 3
+        Developer(s): Game Republic
+        Publishers(s): Sony Computer Entertainment
+        ReleaseDate: 2007-10-09
+        Players: 1
+        Co-op: No
+        Description: Folklore, known in Japan as FolksSoul -Ushinawareta Denshō- (FolksSoul -失われた伝承- FōkusuSōru -Ushinawareta Denshō-, "FolksSoul -Lost Folklore-") is an action role-playing video game developed by Game Republic and published by Sony Computer Entertainment. The game is set in Ireland and the Celtic Otherworld of Irish mythology, centering on a young woman named Ellen, and a journalist named Keats, both playable characters who together unravel the mystery that the quaint village of Doolin hides, the mystery that can only be solved by seeking the memories of the dead in the dangerous, Folk-ridden Netherworld.
+        ESRB Rating: T - Teen
+        Genre(s): !!seq
+            - Role-Playing
+    - Ultra Street Fighter IV: !!map
+        Name: Ultra Street Fighter IV
+        Platform: PC
+        Developer(s): Capcom
+        Publishers(s): Capcom
+        ReleaseDate: 2014-08-08
+        Players: 2
+        Co-op: No
+        Description: Ever since its initial release, the Street Fighter IV series has remained the most popular competitive fighting game franchise on the planet and continues to smash records in terms of tournament attendance and stream viewers. Now, the series evolves to a whole new level with Ultra Street Fighter IV for PlayStation 3, Xbox 360, and PC. Continuing the tradition of excellence the series is known for, five new characters and six new stages have been added for even more fighting mayhem, with rebalanced gameplay and original modes topping off this ultimate offering.
+        Trailer: YouTube !link=https://youtube.com/watch?v=0YbTNYlBHtg
+        Genre(s): !!seq
+            - Fighting
+
+Xbox 360: !!seq
+    - Halo 4: !!map
+        Platform: Microsoft Xbox 360
+        Developer(s): 343 Industries
+        Publishers(s): Microsoft Studios
+        ReleaseDate: 2012-11-06
+        Players: 2
+        Co-op: Yes
+        Description: Halo 4 is the start of a new saga in the Master Chief's story. This saga is known as the Reclaimer Saga. At the end of the legendary mode of Halo 3 we see Master Chief Petty Officer John-117 orbiting a planet and hear him say to Cortana "Wake me when you need me". Well now is the time to be needed. The game starts where you last left off in a torn in half ship orbiting a planet around four years after the events of Halo 3. John wakes up to Cortana screaming "John I need you!" This creates the beginning of a new saga. In Halo 4 we see a new breed of enemies called the Prometheans. The Prometheans are AIs created by the Forerunners to protect a planet. Unfortunately you're seen as a threat. However despite being made by the Forerunners the Prometheans have a much darker and more sinister plot. Also aside from the Prometheans, Cortana is turning rampant and has begun to turn on the Master Chief. As a new twist, the Master Chief will be working together with the Spartan IV's the replacements to the Master Chief.
+        Trailer: YouTube !link=https://youtube.com/watch?v=oBk3c4UIcGw
+        ESRB Rating: M - Mature
+        Genre(s): !!seq
+            - Shooter
+
+Gameboy Advance: !!seq
+    - Pokémon Emerald Version: !!map
+        Name: Pokémon Emerald Version
+        Platform: Nintendo Game Boy Advance
+        Developer(s): Game Freak
+        Publishers(s): Nintendo
+        ReleaseDate: 2004-09-16
+        Players: 4
+        Co-op: No
+        Description: The Hoenn region is unstable--Rayquaza has awakened! Your skills as a Trainer will be challenged like they've never been challenged before as you try to maintain the balance between Kyogre & Groudon. Prove your skills by earning badges & gaining access to Battle Frontier - the front line of Pokémon battling that offers a whole new level of competition. Never-before-experienced battles await you! • The third adventure with new episodes in the Hoenn region! • Tons of new features, including surprising plot twists and changes to where and how often you can catch certain Pokémon! • Use the Game Boy Advance Wireless Adapter to trade & battle between Pokémon Emerald and Pokémon FireRed and LeafGreen versions. • Expand your collection when you trade with a friend. Using a Game Link cable, link up with Pokémon Ruby & Sapphire, Pokémon FireRed & LeafGreen or Pokémon Colosseum to catch them all!
+        ESRB Rating: E - Everyone
+        Genre(s): !!seq
+            - Adventure 
+            - Role-Playing

@@ -4,7 +4,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*", "src/types/*"],
       "@public/*": ["public/*"],
       "@main/*": ["src/main/*"],
       "@models/*": ["src/models/*"],
@@ -19,5 +19,13 @@
     "sourceMap": true,
     "target": "esnext"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "files": [
+    "src/types/custom.d.ts",
+    "src/modules.d.ts",
+  ],
+  "include": [
+    "src/types/custom.d.ts",
+    "src/modules.d.ts",
+  ]
 }
