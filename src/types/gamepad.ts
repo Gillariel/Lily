@@ -33,7 +33,9 @@ export type GamepadInstance = {
 
 export type MyGamepadEvent<T = ButtonKey | Axis | KeyBoardKey> = { 
   key: T,
-  active: boolean, 
+  active: boolean,
+  hold: boolean;
+  holdTicks: number;
   subscribers: Array<{ context: string, func: (finished: () => void, button: GamepadButton | number) => void}>
 }
 

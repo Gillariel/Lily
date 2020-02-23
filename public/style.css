@@ -5,3 +5,14 @@
 .MuiPaper-root.MuiDrawer-paper.makeStyles-drawerOpen-7.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.MuiPaper-elevation0 {
   overflow-x: hidden;
 }
+
+.tabbed-index:focus {
+  transform: scale(1.05);
+  border: 2px solid lightblue;
+}
+
+.tabbed-index:active {
+  transform: scale(1.15);
+  border: 5px solid lightblue;
+  background-color: lightskyblue;
+}

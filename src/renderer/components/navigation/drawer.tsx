@@ -26,8 +26,9 @@ import { MainRouter } from '../../routes'
 import { useHistory } from 'react-router-dom';
 import { ROUTES } from '@/renderer/routes/routes';
 
-import { ButtonKey } from '../../../types/gamepad';
+import { ButtonKey, Axis } from '../../../types/gamepad';
 import useGamepad from '../../controllers';
+import { goToPreviousTabbedElement, goToNextTabbedElement, simulateClickOnActiveElement } from '../../utils/tabindex-helper';
 
 const drawerWidth = 240;
 
@@ -129,6 +130,11 @@ const Drawer = () => {
   }
 
   React.useEffect(() => {
+    gamepad._handleGamepadEventListener(ButtonKey.button_1, "DrawerMenu", (finished) => {
+      simulateClickOnActiveElement();
+      finished();
+    })
+
     gamepad._handleGamepadEventListener(ButtonKey.button_4, "DrawerMenu", (finished) => {
       quitApp();
       finished();
@@ -137,6 +143,16 @@ const Drawer = () => {
     gamepad._handleGamepadEventListener(ButtonKey.select, "DrawerMenu", (finished) => {
       setAnimated(prev => finished);
       toggleDrawer();
+    })
+
+    gamepad._handleGamepadEventListener(ButtonKey.d_pad_up, "DrawerMenu", (finished) => {
+      goToPreviousTabbedElement();
+      finished();
+    })
+
+    gamepad._handleGamepadEventListener(ButtonKey.d_pad_down, "DrawerMenu", (finished) => {
+      goToNextTabbedElement();
+      finished();
     })
 
     return () => { gamepad.unsubscribeContext("DrawerMenu"); }
@@ -198,8 +214,8 @@ const Drawer = () => {
           {[ { text: 'Emulators', icon: <FontAwesomeIcon size="2x" icon={faGamepad} />, route: ROUTES.EMULATORS }, 
              { text: 'Steam', icon: <FontAwesomeIcon size="2x" icon={faSteam} />, route: ROUTES.STEAM  }, 
              { text: 'Battle.net', icon: <FontAwesomeIcon size="2x" icon={faBattleNet} />, route: ROUTES.BATTLENET  }, 
-          ].map((item) => (
-            <ListItem onClick={() => redirect(item.route)} button key={item.text}>
+          ].map((item, index) => (
+            <ListItem id={item.text + index} className="tabbed-index" onClick={() => redirect(item.route)} button key={item.text}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
@@ -211,8 +227,8 @@ const Drawer = () => {
              { text: 'TV Shows', icon: <FontAwesomeIcon size="2x" icon={faTv} />, route: ROUTES.TVSHOWS  }, 
              { text: 'Music', icon: <FontAwesomeIcon size="2x" icon={faCompactDisc} />, route: ROUTES.MUSIC  }, 
              { text: 'Photos', icon: <FontAwesomeIcon size="2x" icon={faCamera} />, route: ROUTES.PHOTOS  }
-          ].map((item) => (
-            <ListItem onClick={() => redirect(item.route)} button key={item.text}>
+          ].map((item, index) => (
+            <ListItem id={item.text + index} className="tabbed-index" onClick={() => redirect(item.route)} button key={item.text}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
@@ -223,19 +239,19 @@ const Drawer = () => {
           {[ { text: 'Books', icon: <FontAwesomeIcon size="2x" icon={faBook} />, route: ROUTES.BOOKS  }, 
              { text: 'Comics', icon: <FontAwesomeIcon size="2x" icon={faMask} />, route: ROUTES.COMICS  }, 
              { text: 'Magazines', icon: <FontAwesomeIcon size="2x" icon={faNewspaper} />, route: ROUTES.MAGAZINES  }, 
-          ].map((item) => (
-            <ListItem onClick={() => redirect(item.route)} button key={item.text}>
+          ].map((item, index) => (
+            <ListItem id={item.text + index} className="tabbed-index" onClick={() => redirect(item.route)} button key={item.text}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
           ))}
         </List>
         <List style={{ position: "absolute", bottom: 0 }}>
-          <ListItem onClick={() => redirect(ROUTES.LOGIN)} button key={"logout"}>
+          <ListItem id={"logout-icon"} className="tabbed-index" onClick={() => redirect(ROUTES.LOGIN)} button key={"logout"}>
             <ListItemIcon>{<FontAwesomeIcon size="2x" icon={faSignOutAlt} />}</ListItemIcon>
             <ListItemText primary={"Logout"} />
           </ListItem>
-          <ListItem onClick={() => quitApp()} button key={"exit"}>
+          <ListItem id={"quit-icon"} className="tabbed-index" onClick={() => quitApp()} button key={"exit"}>
             <ListItemIcon>{<FontAwesomeIcon size="2x" icon={faPowerOff} />}</ListItemIcon>
             <ListItemText primary={"Exit"} />
           </ListItem>

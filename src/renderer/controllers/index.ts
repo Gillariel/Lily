@@ -11,6 +11,9 @@ if (String(typeof window) !== 'undefined') {
   });
 }
 
+const TICKS_PER_INPUT = 50;
+
+
 const _events: { 
   gamepad: MyGamepadEvent<ButtonKey>[],
   axes: MyGamepadEvent<Axis>[],
@@ -84,6 +87,8 @@ const GAMEPAD: GamepadController | undefined = hasGamepadSupport ? {
       _events.gamepad.push({
         key: button,
         active: false,
+        hold: false,
+        holdTicks: 0,
         subscribers: new Array({ context: context, func: func })
       })
     }
@@ -97,6 +102,8 @@ const GAMEPAD: GamepadController | undefined = hasGamepadSupport ? {
       _events.axes.push({
         key: axes,
         active: false,
+        hold: false,
+        holdTicks: 0,
         subscribers: new Array({ context: context, func: func })
       })
     }
@@ -183,6 +190,10 @@ if (GAMEPAD) {
         _events.gamepad.filter(e => !e.active).forEach(e => {
           var buttonAttached = state.buttons[e.key];
           if(buttonAttached.pressed) {
+            if(e.hold && e.holdTicks <= TICKS_PER_INPUT){
+              e.holdTicks++;
+              return;
+            }
             e.active = true;
             var currentActives = new Array<boolean>(e.subscribers.length);
             e.subscribers.forEach((sub, subIndex) => {
@@ -191,7 +202,14 @@ if (GAMEPAD) {
                 if(currentActives.filter(a => a).length == 0)
                   e.active = false;
               }, buttonAttached);
-            })
+            });
+            e.hold = true;
+            e.holdTicks = 0;
+          } else {
+            if(e.hold) {
+              e.hold = false;
+              e.holdTicks = 0;
+            }
           }
         })
       }
@@ -215,7 +233,7 @@ if (GAMEPAD) {
         
       }
     }
-  }, 100);
+  }, 3);
 }
 
 const useGamepad = (): GamepadController => {
