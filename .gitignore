@@ -4,6 +4,7 @@ node_modules/
 out/
 
 Emulators/
+src/config/settings.yml
 
 # Logs
 logs

@@ -8,6 +8,7 @@ import * as ReactDOM from 'react-dom';
 import '@public/style.css';
 import App from './components/app';
 import { BrowserRouter } from 'react-router-dom';
+import "./controllers";
 
 ReactDOM.render(
   <div className='app'>

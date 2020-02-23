@@ -25,6 +25,10 @@ import { faSteam, faBattleNet } from '@fortawesome/free-brands-svg-icons'
 import { MainRouter } from '../../routes'
 import { useHistory } from 'react-router-dom';
 import { ROUTES } from '@/renderer/routes/routes';
+
+import { ButtonKey } from '../../../types/gamepad';
+import useGamepad from '../../controllers';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -100,6 +104,8 @@ const Drawer = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [animated, setAnimated] = React.useState(null);
+  const gamepad = useGamepad();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,6 +114,10 @@ const Drawer = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const toggleDrawer = () => {
+    setOpen(prev => !prev);
+  }
   
   const redirect = (route: ROUTES) => {
     history.push(route);
@@ -118,11 +128,31 @@ const Drawer = () => {
     remote.app.exit(0);
   }
 
+  React.useEffect(() => {
+    gamepad._handleGamepadEventListener(ButtonKey.button_4, "DrawerMenu", (finished) => {
+      quitApp();
+      finished();
+    })
+  
+    gamepad._handleGamepadEventListener(ButtonKey.select, "DrawerMenu", (finished) => {
+      setAnimated(prev => finished);
+      toggleDrawer();
+    })
+
+    return () => { gamepad.unsubscribeContext("DrawerMenu"); }
+  }, [])
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         onClick={handleDrawerOpen}
+        onTransitionEnd={() => {
+          if(animated) {
+            animated();
+            setAnimated(null);          
+          }
+        }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
