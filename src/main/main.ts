@@ -4,13 +4,17 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
-import { getGames } from './utils/folder-checker';
+import { getGames, getGamesFromLibrary } from './utils/folder-checker';
 import initializeConstants from './utils/initialize-contants';
 import libraryGenerator from './ipcs/library-generator';
+import { initCredentialsStore } from '../stores/credentials';
+import CredentialsStore from '../stores/credentials'
 
 const ipc = require('electron').ipcMain;
 
 const global = initializeConstants();
+
+initCredentialsStore();
 
 let mainWindow: Electron.BrowserWindow | null;
 
@@ -21,8 +25,9 @@ function createWindow(): void {
         height: dimensions.height,
         width: dimensions.width,
         webPreferences: {
+            nodeIntegration: true,
             webSecurity: process.env.NODE_ENV === 'production' ? false : true,
-            devTools: process.env.NODE_ENV === 'production' ? false : true
+            devTools: true,//process.env.NODE_ENV === 'production' ? false : true,
         },
         center: true,
     });
@@ -45,7 +50,7 @@ function createWindow(): void {
     });
 
 
-    ipc.on('launch-game', (e: Electron.IpcMessageEvent, args: string[]) => {
+    ipc.on('launch-game', (e: Electron.IpcMainEvent, args: string[]) => {
         console.log(args);
         var emulator = args.find(a => a.includes('emulator'));
         if(emulator && emulator.split("=")[1] === ('rpcs3')) {
@@ -54,12 +59,25 @@ function createWindow(): void {
         }
     })
 
-    ipc.on('get-games', (e: Electron.IpcMessageEvent, args: string[]) => {
-        e.sender.send('get-games', { games: getGames() });
+    ipc.on('get-games', (e: Electron.IpcMainEvent, args: string[]) => {
+        console.log(global)
+        e.sender.send('get-games', {
+            //games: getGames()
+            games: JSON.stringify(getGamesFromLibrary(global)) 
+        });
+    })
+
+    ipc.on('log-stores', (e: Electron.IpcMainEvent, args: string[]) => {
+        var store: Array<{ [key: string]: string }> = Object.keys(CredentialsStore.store).map(((key: string) => {
+            return { [key]: CredentialsStore.store[key] };
+        }))
+        e.sender.send('result-log-stores', store);
     })
 
     libraryGenerator(ipc, global);
 }
+
+app.allowRendererProcessReuse = true;
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

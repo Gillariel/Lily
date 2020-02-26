@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-export default function ChipsList(props: { labels: string[] }) {
+export default function ChipsList(props: { labels: string[], onSelected?: (selected: string) => void }) {
   const classes = useStyles();
   return (
     <Paper className={classes.root}>
@@ -27,6 +27,8 @@ export default function ChipsList(props: { labels: string[] }) {
             key={label}
             color="primary"
             label={label}
+            clickable={true}
+            onClick={(e) => props.onSelected ? props.onSelected(e.currentTarget.textContent): null}
             className={classes.chip}
           />
         );

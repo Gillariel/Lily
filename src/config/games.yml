@@ -26,6 +26,7 @@ PS3: !!seq
 
 Xbox 360: !!seq
     - Halo 4: !!map
+        Name: "Halo 4"
         Platform: Microsoft Xbox 360
         Developer(s): 343 Industries
         Publishers(s): Microsoft Studios

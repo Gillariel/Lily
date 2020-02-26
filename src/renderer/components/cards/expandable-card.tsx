@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IExpandableCard {
   title: string;
   subtitle: string;
+  description: string;
+  genres: string[];
   notify: () => void;
 }
 
@@ -109,17 +111,13 @@ export default function ExpandableCard(props: IExpandableCard) {
       <Collapse onEntering={() => props.notify()} onEntered={() => props.notify()} onExiting={() => props.notify()} onExited={() => props.notify()} in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            Folklore, known in Japan as FolksSoul -Ushinawareta Denshō- (FolksSoul -失われた伝承- FōkusuSōru -Ushinawareta Denshō-, 
-            "FolksSoul -Lost Folklore-") is an action role-playing video game developed by Game Republic and published by Sony Computer Entertainment. 
-            The game is set in Ireland and the Celtic Otherworld of Irish mythology, centering on a young woman named Ellen, 
-            and a journalist named Keats, both playable characters who together unravel the mystery that the quaint village of Doolin hides,
-            the mystery that can only be solved by seeking the memories of the dead in the dangerous, Folk-ridden Netherworld.
+            {props.description}
           </Typography>
           <Typography paragraph>
             ESRB Rating: T - Teen
           </Typography>
           <Typography paragraph>
-            Genre(s): Role-Playing
+            Genre(s): <ul>{props.genres.map(genre => <li key={props.title + genre}>{genre}</li>)}</ul>
           </Typography>
         </CardContent>
       </Collapse>

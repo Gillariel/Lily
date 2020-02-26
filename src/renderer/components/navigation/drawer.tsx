@@ -29,6 +29,13 @@ import { ROUTES } from '@/renderer/routes/routes';
 import { ButtonKey, Axis } from '../../../types/gamepad';
 import useGamepad from '../../controllers';
 import { goToPreviousTabbedElement, goToNextTabbedElement, simulateClickOnActiveElement } from '../../utils/tabindex-helper';
+import { IpcRendererEvent } from 'electron';
+import { KeyValue } from '../../../types';
+
+const ipcRenderer = require('electron').ipcRenderer;
+ipcRenderer.on('result-log-stores', (e: IpcRendererEvent, args: Object) => {
+  console.log(args);
+})
 
 const drawerWidth = 240;
 
@@ -247,6 +254,15 @@ const Drawer = () => {
           ))}
         </List>
         <List style={{ position: "absolute", bottom: 0 }}>
+          {process.env.NODE_ENV === 'development' && 
+            <ListItem id={"log-store-icon"} className="tabbed-index" onClick={() => {
+              ipcRenderer.send('log-stores');
+              ipcRenderer.send("generate-library");
+            }} button key={"log store"}>
+              <ListItemIcon>{<FontAwesomeIcon size="2x" icon={faSignOutAlt} />}</ListItemIcon>
+              <ListItemText primary={"Log Store"} />
+            </ListItem>
+          }
           <ListItem id={"logout-icon"} className="tabbed-index" onClick={() => redirect(ROUTES.LOGIN)} button key={"logout"}>
             <ListItemIcon>{<FontAwesomeIcon size="2x" icon={faSignOutAlt} />}</ListItemIcon>
             <ListItemText primary={"Logout"} />
