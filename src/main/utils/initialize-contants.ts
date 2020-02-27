@@ -1,4 +1,4 @@
-import * as fs  from 'fs'
+const fs = require('fs');
 import { safeLoad } from 'js-yaml'
 import { Global } from '../../types/global';
 

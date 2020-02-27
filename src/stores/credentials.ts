@@ -1,7 +1,7 @@
 import * as Store from 'electron-store';
 import { Credentials } from '../types/store';
 import { safeDump, safeLoad } from 'js-yaml';
-import fs from 'fs'
+const fs = require('fs');
 import { KeyValue } from '../types';
 const store = new Store<Credentials>({
   name: "crendentials",
